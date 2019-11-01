@@ -110,6 +110,7 @@ const ProductPrice = (props, context) => {
     installmentContainerClass,
     styles,
     intl,
+    skippedSimulation,
   } = props
 
   const { culture } = useRuntime()
@@ -124,7 +125,7 @@ const ProductPrice = (props, context) => {
     ...classes,
   }
 
-  if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
+  if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice) || skippedSimulation) {
     return <ProductPriceLoader loaderClass={`${loaderClass} ${handles.price_loader}`} {...styles} />
   }
 

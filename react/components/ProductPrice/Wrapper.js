@@ -70,6 +70,7 @@ const ProductPriceWrapper = ({
     skippedSimulation,
   } = props
 
+
   const productPriceProps = () => {
     if (!valuesFromContext || isEmpty(valuesFromContext) || (!has('query', props) && !has('params', props))) {
       return {
@@ -79,6 +80,7 @@ const ProductPriceWrapper = ({
         showInstallments,
         showLabels,
         showSavings,
+        skippedSimulation,
         showProductPrice: true,
       }
     }

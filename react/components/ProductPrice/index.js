@@ -124,7 +124,7 @@ const ProductPrice = (props, context) => {
     ...PriceWithIntl.defaultProps.classes,
     ...classes,
   }
-
+  console.log('teste skippedSimulation: ', skippedSimulation)
   if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice) || skippedSimulation) {
     return <ProductPriceLoader loaderClass={`${loaderClass} ${handles.price_loader}`} {...styles} />
   }

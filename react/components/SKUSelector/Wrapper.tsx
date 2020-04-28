@@ -53,7 +53,7 @@ const getVariationsFromSpecifications = (
       visibleVariations.includes(specification.field.name.toLowerCase().trim())
     ) {
       variations[specification.field.name] = specification.values.map(
-        value => value.name
+        (value) => value.name
       )
     }
   }
@@ -81,7 +81,7 @@ const useVariations = (
     }
     let formattedVisibleVariations = visibleVariations
     if (visibleVariations) {
-      formattedVisibleVariations = visibleVariations.map(variation =>
+      formattedVisibleVariations = visibleVariations.map((variation) =>
         variation.toLowerCase().trim()
       )
     }
@@ -128,7 +128,7 @@ interface Props {
   sliderItemsPerPage?: ResponsiveInput<number>
 }
 
-const SKUSelectorWrapper: StorefrontFC<Props> = props => {
+const SKUSelectorWrapper: StorefrontFC<Props> = (props) => {
   const valuesFromContext = useProduct()
   const dispatch = useProductDispatch()
   const { imageHeight, imageWidth } = useResponsiveValues(

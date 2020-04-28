@@ -72,12 +72,13 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
       return
     }
 
-    contentElement.style.transform = `scale(${scale}, ${scale}) translate3d(${-x /
-      scale}px, ${-y / scale}px, 0)`
+    contentElement.style.transform = `scale(${scale}, ${scale}) translate3d(${
+      -x / scale
+    }px, ${-y / scale}px, 0)`
   }
 
   const getContainerBounds = () =>
-    containerBounds.current || getBounds(containerRef.current)
+    containerBounds.current ?? getBounds(containerRef.current)
 
   const handleMouseOver = () => {
     setZoom(true)

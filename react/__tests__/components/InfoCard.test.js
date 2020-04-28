@@ -4,7 +4,7 @@ import { render } from '@vtex/test-tools/react'
 import InfoCard from '../../InfoCard'
 
 describe('<InfoCard />', () => {
-  const renderComponent = props => {
+  const renderComponent = (props) => {
     const defaultProps = {
       isFullModeStyle: false,
       headline: 'MY HEADLINE',

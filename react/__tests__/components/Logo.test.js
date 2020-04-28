@@ -1,10 +1,10 @@
 import React from 'react'
-
-import Logo from '../../Logo'
 import { render } from '@vtex/test-tools/react'
 
+import Logo from '../../Logo'
+
 describe('<Logo /> component', () => {
-  const renderComponent = customProps => {
+  const renderComponent = (customProps) => {
     const props = {
       title: 'title',
       ...customProps,

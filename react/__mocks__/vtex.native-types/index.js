@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl'
 
 export const formatIOMessage = ({ id }) => id
 
-export const IOMessage = props => {
+export const IOMessage = (props) => {
   if (props.id) {
     return <FormattedMessage {...props} />
   }
@@ -15,4 +15,3 @@ export const IOMessage = props => {
   }
   return null
 }
-  

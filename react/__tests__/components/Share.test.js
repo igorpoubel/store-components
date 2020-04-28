@@ -1,10 +1,10 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
-import Share from './../../Share'
+import Share from '../../Share'
 
 describe('<Share />', () => {
-  const renderComponent = props => {
+  const renderComponent = (props) => {
     return render(<Share imageUrl="" {...props} />)
   }
 

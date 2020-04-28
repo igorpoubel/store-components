@@ -10,7 +10,7 @@ const runtime = {
   culture: { currency: 'USD' },
 }
 
-export const withRuntimeContext = Comp =>
+export const withRuntimeContext = (Comp) =>
   function WrappedRuntimeContext(props) {
     return <Comp {...props} runtime={runtime} />
   }
@@ -31,6 +31,6 @@ export const useChildBlock = () => true
 
 export const useExperimentalLazyImagesContext = () => {
   return {
-    lazyLoad: false
+    lazyLoad: false,
   }
 }

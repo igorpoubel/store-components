@@ -88,12 +88,12 @@ const SelectorItem: FC<Props> = ({
     ]
   )
 
-  const passedAnyDimension = Boolean(imageHeight || imageWidth)
+  const passedAnyDimension = Boolean(imageHeight ?? imageWidth)
   let containerStyles = {}
   if (isImage && passedAnyDimension && imageUrl) {
     containerStyles = {
-      height: imageHeight || 'auto',
-      width: imageWidth || 'auto',
+      height: imageHeight ?? 'auto',
+      width: imageWidth ?? 'auto',
       padding: 0,
     }
     imageUrl = changeImageUrlSize(imageUrl, imageWidth, imageHeight)
@@ -106,7 +106,7 @@ const SelectorItem: FC<Props> = ({
       onClick={onClick}
       style={containerStyles}
       className={containerClasses}
-      onKeyDown={e => e.key === 'Enter' && onClick(e)}
+      onKeyDown={(e) => e.key === 'Enter' && onClick(e)}
     >
       <div
         className={classNames(

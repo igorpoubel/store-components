@@ -4,13 +4,13 @@ import { injectIntl } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 import { FormattedCurrency, formatCurrency } from 'vtex.format-currency'
 
-const isValidPriceRange = priceRange => {
+const isValidPriceRange = (priceRange) => {
   const [lowPrice, highPrice] = priceRange
   return priceRange.length === 2 && lowPrice !== highPrice
 }
 
 const formatPriceRange = (intl, culture, rawPriceRange) => {
-  const priceRangeFormatted = (rawPriceRange || []).map(value =>
+  const priceRangeFormatted = (rawPriceRange || []).map((value) =>
     formatCurrency({ intl, culture, value })
   )
 

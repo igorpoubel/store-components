@@ -4,7 +4,7 @@ import { render } from '@vtex/test-tools/react'
 import CategoriesHighlights from '../../CategoriesHighlights'
 
 describe('<CategoriesHighlights />', () => {
-  const renderComponent = customProps => {
+  const renderComponent = (customProps) => {
     const props = {
       cardShape: 'squared',
       showCategoriesHighlighted: true,

@@ -51,8 +51,9 @@ const defaultValues = {
   textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
 }
 
-const getEnumValues = enumObject => values(enumObject).map(({ value }) => value)
-const getEnumNames = enumObject => values(enumObject).map(({ name }) => name)
+const getEnumValues = (enumObject) =>
+  values(enumObject).map(({ value }) => value)
+const getEnumNames = (enumObject) => values(enumObject).map(({ name }) => name)
 
 const safelyGetToken = (tokenMap, valueWanted, propName) =>
   tokenMap[valueWanted] || defaultValues[propName]
@@ -70,7 +71,7 @@ const sanitizerConfig = {
   },
 }
 
-const sanitizeHtml = input => (input ? insane(input, sanitizerConfig) : null)
+const sanitizeHtml = (input) => (input ? insane(input, sanitizerConfig) : null)
 
 const CSS_HANDLES = [
   'infoCardContainer',

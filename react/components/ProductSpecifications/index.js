@@ -43,7 +43,7 @@ const ProductSpecifications = ({
       (collapsible === 'desktopOnly' && !isMobile)
   )
 
-  const handleTabChange = tabIndex => {
+  const handleTabChange = (tabIndex) => {
     setCurrentTab(tabIndex)
     if (shouldCollapseInTabChange) {
       setCollapsed(true)
@@ -51,15 +51,19 @@ const ProductSpecifications = ({
   }
 
   const getSpecificationItems = () => {
-    const mappedSpecifications = specifications.map(specification => {
+    const mappedSpecifications = specifications.map((specification) => {
       return {
         property: specification.name,
-        specifications: specification.values.join(", "),
+        specifications: specification.values.join(', '),
       }
     })
 
-    if (visibleSpecifications && visibleSpecifications.length > 0
-      && hiddenSpecifications && hiddenSpecifications.length > 0) {
+    if (
+      visibleSpecifications &&
+      visibleSpecifications.length > 0 &&
+      hiddenSpecifications &&
+      hiddenSpecifications.length > 0
+    ) {
       console.warn(
         'A product-specification block is using both visibleSpecifications and hiddenSpecifications props at the same time. Please choose only one of them.'
       )
@@ -68,18 +72,18 @@ const ProductSpecifications = ({
     }
 
     if (visibleSpecifications && visibleSpecifications.length > 0) {
-      return mappedSpecifications.filter(specification =>
+      return mappedSpecifications.filter((specification) =>
         visibleSpecifications.find(
-          filter =>
+          (filter) =>
             specification.property.toLowerCase() === filter.toLowerCase()
         )
       )
     }
     if (hiddenSpecifications && hiddenSpecifications.length > 0) {
       return mappedSpecifications.filter(
-        specification =>
+        (specification) =>
           !hiddenSpecifications.find(
-            filter =>
+            (filter) =>
               specification.property.toLowerCase() === filter.toLowerCase()
           )
       )
@@ -92,7 +96,7 @@ const ProductSpecifications = ({
 
   const specificationTitle = (
     <FormattedMessage id="store/technicalspecifications.title">
-      {txt => (
+      {(txt) => (
         <h2 className={`${handles.specificationsTitle} t-heading-5 mb5 mt0`}>
           {HtmlParser(txt)}
         </h2>

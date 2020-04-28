@@ -1,7 +1,7 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
 
-const GreetingLoading = props => (
+const GreetingLoading = (props) => (
   <ContentLoader
     height={32}
     width={300}

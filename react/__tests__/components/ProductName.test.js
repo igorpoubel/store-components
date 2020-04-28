@@ -1,7 +1,8 @@
 import React from 'react'
-import ProductName from './../../ProductName'
 import { render } from '@vtex/test-tools/react'
 import PropTypes from 'prop-types'
+
+import ProductName from '../../ProductName'
 
 describe('<ProductName />', () => {
   const defaultProps = {
@@ -11,7 +12,7 @@ describe('<ProductName />', () => {
 
   const context = { culture: { currency: 'USD' } }
 
-  const renderComponent = customProps => {
+  const renderComponent = (customProps) => {
     const props = {
       ...defaultProps,
       ...customProps,

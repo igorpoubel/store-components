@@ -5,7 +5,7 @@ import { useRuntime } from 'vtex.render-runtime'
 
 import ShippingSimulator from './index'
 
-const ShippingSimulatorWrapper = props => {
+const ShippingSimulatorWrapper = (props) => {
   const { culture } = useRuntime()
   const productContext = useContext(ProductContext)
 

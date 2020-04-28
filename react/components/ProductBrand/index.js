@@ -84,13 +84,13 @@ const ProductBrand = ({
 
   return (
     <Query query={brandLogoQuery} ssr={false} variables={{ id: brandId }}>
-      {query => {
+      {(query) => {
         const { data } = query
         if (data && data.brand) {
           const { imageUrl } = data.brand
           if (imageUrl) {
             const dpi = (window && window.devicePixelRatio) || 1
-            const logoLink = '/' + brandName + '/b'
+            const logoLink = `/${brandName}/b`
             const logoImage = (
               <img
                 className={`${handles.productBrandLogo}`}

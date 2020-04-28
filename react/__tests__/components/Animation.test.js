@@ -1,10 +1,10 @@
 import React from 'react'
-
-import Animation from '../../Animation'
 import { render } from '@vtex/test-tools/react'
 
+import Animation from '../../Animation'
+
 describe('<Animation /> component', () => {
-  const renderComponent = customProps => {
+  const renderComponent = (customProps) => {
     const comp = <Animation {...customProps}> Test </Animation>
 
     return render(comp)

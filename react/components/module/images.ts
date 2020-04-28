@@ -1,11 +1,11 @@
-import { head } from 'ramda'
+import head from 'ramda/es/head'
 
 export const imageUrlForSize = (imageUrl: string, size: number) => {
   if (!imageUrl) {
     return ''
   }
   const urlSplitted = imageUrl.split('/')
-  const idsStringIdx = urlSplitted.findIndex(content => content === 'ids')
+  const idsStringIdx = urlSplitted.findIndex((content) => content === 'ids')
   if (idsStringIdx < 0 || idsStringIdx === urlSplitted.length - 1)
     return imageUrl
   const sizeStringIdx = idsStringIdx + 1

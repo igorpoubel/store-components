@@ -12,10 +12,9 @@ import {
 import { Overlay } from 'vtex.react-portal'
 import { useCssHandles } from 'vtex.css-handles'
 import { intlShape, defineMessages } from 'react-intl'
+
 import styles from '../styles.css'
-
 import AutocompleteResults from '../../AutocompleteResults'
-
 import AutocompleteInput from './AutocompleteInput'
 
 const CSS_HANDLES = ['searchBarInnerContainer']
@@ -59,7 +58,7 @@ const SearchBar = ({
   const [inputErrorMessage, setInputErrorMessage] = useState()
 
   const debouncedSetSearchTerm = useCallback(
-    debounce(newValue => {
+    debounce((newValue) => {
       setSearchTerm(newValue)
     }, SEARCH_DELAY_TIME),
     []
@@ -70,7 +69,7 @@ const SearchBar = ({
   }, [debouncedSetSearchTerm, inputValue])
 
   const onSelect = useCallback(
-    element => {
+    (element) => {
       if (!element) {
         return
       }
@@ -108,12 +107,13 @@ const SearchBar = ({
       if (element.criteria) {
         // This param is only useful to track terms searched
         // See: https://support.google.com/analytics/answer/1012264
-        const paramForSearchTracking = '&_c=' + terms[0]
+        const paramForSearchTracking = `&_c=${terms[0]}`
 
         page = 'store.search'
         params = { term: terms[0] }
-        query =
-          `map=c,ft&rest=${terms.slice(1).join(',')}` + paramForSearchTracking
+        query = `map=c,ft&rest=${terms
+          .slice(1)
+          .join(',')}${paramForSearchTracking}`
       }
 
       navigate({ page, params, query })
@@ -129,7 +129,7 @@ const SearchBar = ({
     return null
   }
 
-  const showInputErrorMessage = inputErrorMessage => {
+  const showInputErrorMessage = (inputErrorMessage) => {
     setInputErrorMessage(inputErrorMessage)
   }
 
@@ -156,8 +156,8 @@ const SearchBar = ({
 
   const SelectedAutocompleteResults = useMemo(() => {
     return isAutocompleteDeclared
-      ? props => <ExtensionPoint id={AUTCOMPLETE_EXTENSION_ID} {...props} />
-      : props => <AutocompleteResults {...props} />
+      ? (props) => <ExtensionPoint id={AUTCOMPLETE_EXTENSION_ID} {...props} />
+      : (props) => <AutocompleteResults {...props} />
   }, [isAutocompleteDeclared])
 
   return (
@@ -202,7 +202,7 @@ const SearchBar = ({
                 openMenu={openMenu}
                 inputErrorMessage={inputErrorMessage}
                 {...getInputProps({
-                  onKeyDown: event => {
+                  onKeyDown: (event) => {
                     // Only call default search function if user doesn't
                     // have any item highlighted in the menu options
                     if (event.key === 'Enter' && highlightedIndex === null) {

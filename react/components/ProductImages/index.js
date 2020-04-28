@@ -35,22 +35,22 @@ const ProductImages = ({
   }
 
   const excludeImageRegexes =
-    hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
+    hiddenImages && hiddenImages.map((text) => new RegExp(text, 'i'))
   const handles = useCssHandles(CSS_HANDLES)
 
   const images = allImages
     .filter(
-      image =>
+      (image) =>
         !image.imageLabel ||
-        !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
+        !excludeImageRegexes.some((regex) => regex.test(image.imageLabel))
     )
-    .map(image => ({
+    .map((image) => ({
       type: 'image',
       url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
       alt: image.imageText,
       thumbUrl: image.thumbnailUrl || image.imageUrl,
     }))
-  const videos = allVideos.map(video => ({
+  const videos = allVideos.map((video) => ({
     type: 'video',
     src: video.videoUrl,
     thumbWidth: 300,

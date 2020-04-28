@@ -6,7 +6,7 @@ import { useRuntime } from 'vtex.render-runtime'
 
 import Share from './index'
 
-const ShareWrapper = props => {
+const ShareWrapper = (props) => {
   const { intl } = props
 
   const valuesFromContext = useContext(ProductContext)
@@ -32,8 +32,10 @@ const ShareWrapper = props => {
       ...props,
       shareLabelClass: props.shareLabelClass || 'c-muted-2 t-small mb3',
       className: props.className || 'db',
-      imageUrl: props.imageUrl || path(['items', 0, 'images', 0, 'imageUrl'], product),
-      loading: props.loading != null ? props.loading : !path(['name'], selectedItem),
+      imageUrl:
+        props.imageUrl || path(['items', 0, 'images', 0, 'imageUrl'], product),
+      loading:
+        props.loading != null ? props.loading : !path(['name'], selectedItem),
       title: props.title || title,
     }
   }

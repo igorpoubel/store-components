@@ -1,8 +1,8 @@
 import React from 'react'
-
-import ProductBrand from '../../ProductBrand'
 import { render, wait } from '@vtex/test-tools/react'
 import { MockedProvider } from '@apollo/react-testing'
+
+import ProductBrand from '../../ProductBrand'
 import brandLogoQuery from '../../components/ProductBrand/productBrand.gql'
 
 const mocks = [
@@ -10,22 +10,21 @@ const mocks = [
     request: {
       query: brandLogoQuery,
       variables: {
-        id: 2000850
-      }
+        id: 2000850,
+      },
     },
     result: {
       data: {
         brand: {
-          imageUrl: '/220310/billabong.jpg'
-        }
+          imageUrl: '/220310/billabong.jpg',
+        },
       },
     },
   },
 ]
 
 describe('<ProductBrand /> component', () => {
-
-  const renderComponent = logoRedirect => {
+  const renderComponent = (logoRedirect) => {
     const props = {
       displayMode: 'logo',
       fallbackToText: true,
@@ -36,7 +35,7 @@ describe('<ProductBrand /> component', () => {
     }
     const comp = <ProductBrand {...props} />
 
-    return render(comp, {graphql: {mocks}, MockedProvider})
+    return render(comp, { graphql: { mocks }, MockedProvider })
   }
 
   beforeEach(() => {
@@ -44,7 +43,6 @@ describe('<ProductBrand /> component', () => {
   })
 
   it('brand image should not have a link', async () => {
-    
     const { queryByTestId } = renderComponent(false)
     await wait(() => {
       jest.runAllTimers()
@@ -53,8 +51,7 @@ describe('<ProductBrand /> component', () => {
   })
 
   it('brand image should have a link', async () => {
-    
-    const {getByTestId } = renderComponent(true)
+    const { getByTestId } = renderComponent(true)
     await wait(() => {
       jest.runAllTimers()
     })

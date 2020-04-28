@@ -1,15 +1,15 @@
 import React from 'react'
 
-export const useCssHandles = cssHandles => {
+export const useCssHandles = (cssHandles) => {
   const handles = {}
-  cssHandles.forEach(handle => {
+  cssHandles.forEach((handle) => {
     handles[handle] = handle
   })
 
   return handles
 }
 
-const validateModifier = modifier => {
+const validateModifier = (modifier) => {
   if (typeof modifier !== 'string') {
     console.error(
       `Invalid modifier type on \`cssHandles.applyModifier\`. All modifiers should be strings, found "${modifier}" `
@@ -18,7 +18,7 @@ const validateModifier = modifier => {
   }
 
   /* This is not an error, so doesn't log any message, but should
-   * invalidate the current modifier and not include it*/
+   * invalidate the current modifier and not include it */
   if (modifier === '') {
     return false
   }
@@ -46,7 +46,7 @@ export const applyModifiers = (handles, modifier) => {
   const splitHandles = handles.split(' ')
 
   const modifiedHandles = normalizedModifiers
-    .map(currentModifier => {
+    .map((currentModifier) => {
       const isValid = validateModifier(currentModifier)
 
       if (!isValid) {
@@ -54,22 +54,19 @@ export const applyModifiers = (handles, modifier) => {
       }
 
       return splitHandles
-        .map(handle => `${handle}--${currentModifier}`)
+        .map((handle) => `${handle}--${currentModifier}`)
         .join(' ')
         .trim()
     })
-    .filter(l => l.length > 0)
+    .filter((l) => l.length > 0)
     .join(' ')
     .trim()
 
-  return splitHandles
-    .concat(modifiedHandles)
-    .join(' ')
-    .trim()
+  return splitHandles.concat(modifiedHandles).join(' ').trim()
 }
 
-export const withCssHandles = (handles = [], options) => Component => {
-  const EnhancedComponent = props => {
+export const withCssHandles = (handles = [], options) => (Component) => {
+  const EnhancedComponent = (props) => {
     const cssHandles = useCssHandles(handles, options)
 
     return <Component cssHandles={cssHandles} {...props} />

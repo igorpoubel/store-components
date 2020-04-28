@@ -20,7 +20,6 @@ import {
   Variations,
   DisplayMode,
 } from '../types'
-
 import Variation from './Variation'
 import useEffectSkipMount from './hooks/useEffectSkipMount'
 
@@ -243,7 +242,7 @@ const getAvailableVariations = ({
 const getAvailableVariationsPromise = (
   params: AvailableVariationParams
 ): Promise<DisplayVariation[]> => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const result = getAvailableVariations(params)
     resolve(result)
   })
@@ -311,7 +310,7 @@ const SKUSelector: FC<Props> = ({
   useEffectSkipMount(() => {
     let isCurrent = true
     const promise = getAvailableVariationsPromise(availableVariationsPayload)
-    promise.then(availableVariations => {
+    promise.then((availableVariations) => {
       if (isCurrent) {
         setDisplayVariations(availableVariations)
       }
@@ -323,7 +322,9 @@ const SKUSelector: FC<Props> = ({
 
   const variationClasses = `mb${variationsSpacing}`
   return (
-    <div className={`${styles.skuSelectorContainer} ${handles.skuSelectorContainer}`}>
+    <div
+      className={`${styles.skuSelectorContainer} ${handles.skuSelectorContainer}`}
+    >
       {displayVariations.map((variationOption, index) => {
         const selectedItem = selectedVariations[variationOption.name]
 

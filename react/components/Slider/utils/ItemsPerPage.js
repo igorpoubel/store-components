@@ -8,9 +8,9 @@ function getItemWidth(slick, maxWidth) {
   let itemWidth = null
   if (slidesNodeList) {
     const slidesArray = Array.prototype.slice.call(slidesNodeList)
-    slidesArray.map(slide => {
+    slidesArray.map((slide) => {
       const attributes = Array.prototype.slice.call(slide.attributes)
-      attributes.map(attr => {
+      attributes.map((attr) => {
         if (attr.nodeName === 'data-index' && attr.nodeValue === '0') {
           itemWidth = path(['childNodes', '0', 'clientWidth'], slide)
           if (maxWidth && maxWidth < itemWidth) itemWidth = maxWidth

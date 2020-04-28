@@ -10,13 +10,13 @@ import styles from './styles.css'
 
 const CSS_HANDLES = ['container', 'content', 'showMoreButton']
 
-const transitionStyle = transitionTime => ({
+const transitionStyle = (transitionTime) => ({
   transition: `${transitionTime}ms ease-in-out`,
 })
 
-const fadeBottomClasses = state =>
+const fadeBottomClasses = (state) =>
   classNames(styles.fadeBottom, { 'o-0': state === 'entered' }, 'w-100 h-50')
-const pointerEventsAutoClasses = state =>
+const pointerEventsAutoClasses = (state) =>
   classNames(
     styles.pointerEventsAuto,
     {
@@ -88,7 +88,7 @@ function GradientCollapse(props) {
 
   return (
     <Transition timeout={transitionTime} in={!collapsed}>
-      {state => (
+      {(state) => (
         <div
           style={{
             ...transitionStyle(transitionTime),
@@ -109,7 +109,7 @@ function GradientCollapse(props) {
             />
             <div className={pointerEventsAutoClasses(state)}>
               <button
-                onClick={e => handleCollapsedChange(e, !collapsed)}
+                onClick={(e) => handleCollapsedChange(e, !collapsed)}
                 className={`${handles.showMoreButton} c-action-primary t-action pointer ma5 bn outline-0`}
               >
                 {state === 'entered' || (collapsed && state !== 'exited') ? (

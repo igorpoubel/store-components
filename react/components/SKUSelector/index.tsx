@@ -72,20 +72,20 @@ function filterColorImages(
 ) {
   const imageRegex = new RegExp(imageRegexText, 'i')
 
-  return items.map(item => {
+  return items.map((item) => {
     if (!item.images) {
       return item
     }
 
     const hasVariationImage = item.images.some(
-      image => image.imageLabel && imageRegex.test(image.imageLabel)
+      (image) => image.imageLabel && imageRegex.test(image.imageLabel)
     )
 
     return {
       ...item,
       // if it doesn't have a variation image, it wont remove images without a label
       images: hasVariationImage
-        ? item.images.filter(image => {
+        ? item.images.filter((image) => {
             if (!image.imageLabel) {
               return false
             }
@@ -118,7 +118,7 @@ const useImagesMap = (
       const variationValues = variations[variationName]
       for (const variationValue of variationValues) {
         const item = filteredItems.find(
-          sku => sku.variationValues[variationName] === variationValue
+          (sku) => sku.variationValues[variationName] === variationValue
         )
         imageMap[variationValue] = item && head(item.images)
       }

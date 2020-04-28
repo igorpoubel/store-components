@@ -18,7 +18,7 @@ const styles = {
   },
 }
 
-const ProductNameWrapper = props => {
+const ProductNameWrapper = (props) => {
   const valuesFromContext = useContext(ProductContext)
 
   const productNameProps = () => {

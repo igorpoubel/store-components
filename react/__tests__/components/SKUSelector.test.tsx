@@ -1,9 +1,9 @@
 import React from 'react'
 import { render, fireEvent, wait } from '@vtex/test-tools/react'
 import useProduct, { ProductContext } from 'vtex.product-context/useProduct'
-
-import SKUSelector from './../../SKUSelector'
 import { getSKU } from 'sku-helper'
+
+import SKUSelector from '../../SKUSelector'
 
 describe('<SKUSelector />', () => {
   const renderComponent = (customProps = {}) => {
@@ -1121,7 +1121,7 @@ describe('<SKUSelector />', () => {
         skuSelected={skuItems[0]}
         skuItems={skuItems}
         maxItems={6}
-        showValueNameForImageVariation={true}
+        showValueNameForImageVariation
       />
     )
 
@@ -1155,7 +1155,7 @@ describe('<SKUSelector />', () => {
       images: [],
     }
 
-    mockedUseProduct.mockImplementation(function(): ProductContext {
+    mockedUseProduct.mockImplementation(function (): ProductContext {
       return {
         product: {
           buyButton: {
@@ -1248,7 +1248,7 @@ describe('<SKUSelector />', () => {
     const { asFragment } = render(
       <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
     )
-    //check comment above the 'it' description
+    // check comment above the 'it' description
     expect(asFragment()).toMatchSnapshot()
   })
 })

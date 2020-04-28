@@ -7,7 +7,7 @@ import ProductImages from './index'
 import generateImageConfig from './utils/generateImageConfig'
 import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
 
-const ProductImagesWrapper = props => {
+const ProductImagesWrapper = (props) => {
   const valuesFromContext = useProduct() || {}
   const {
     aspectRatio,

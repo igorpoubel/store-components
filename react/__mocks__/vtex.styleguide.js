@@ -31,7 +31,7 @@ export function Dropdown(props) {
 
   return (
     <select value={value} onChange={onChange}>
-      {options.map(op => (
+      {options.map((op) => (
         <option key={op.value} value={op.value}>
           {op.label}
         </option>
@@ -60,14 +60,17 @@ export const Input = forwardRef(function Input(
   )
 })
 
-export const Button = jest.fn(({ isLoading, variation, block, children, ...props }) => {
-  return (
-    <button
-      data-variation={variation}
-      data-isloading={isLoading}
-      data-block={block}
-      {...props}>
-      {children}
-    </button>
-  )
-})
+export const Button = jest.fn(
+  ({ isLoading, variation, block, children, ...props }) => {
+    return (
+      <button
+        data-variation={variation}
+        data-isloading={isLoading}
+        data-block={block}
+        {...props}
+      >
+        {children}
+      </button>
+    )
+  }
+)

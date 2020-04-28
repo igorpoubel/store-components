@@ -4,10 +4,10 @@ import { path, isEmpty, compose } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { withToast } from 'vtex.styleguide'
 import { useOrderForm } from 'vtex.store-resources/OrderFormContext'
-import ProductPrice from '../ProductPrice'
 import { graphql } from 'react-apollo'
 import { useCssHandles } from 'vtex.css-handles'
 
+import ProductPrice from '../ProductPrice'
 import { BuyButton } from './index'
 import { transformAssemblyOptions, sumAssembliesPrice } from './assemblyUtils'
 import addToCartMutation from './mutations/addToCart.gql'
@@ -30,7 +30,7 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
   if (!showItemsPrice) {
     return (
       <FormattedMessage id="store/buy-button.add-to-cart">
-        {message => <span className={handles.buyButtonText}>{message}</span>}
+        {(message) => <span className={handles.buyButtonText}>{message}</span>}
       </FormattedMessage>
     )
     return
@@ -50,7 +50,7 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
       className={`${handles.buttonDataContainer} flex w-100 justify-between items-center`}
     >
       <FormattedMessage id="store/buy-button.add-to-cart">
-        {message => <span className={handles.buyButtonText}>{message}</span>}
+        {(message) => <span className={handles.buyButtonText}>{message}</span>}
       </FormattedMessage>
       <ProductPrice
         showLabels={false}
@@ -80,7 +80,7 @@ const BuyButtonWrapper = ({
   customToastURL,
   showTooltipOnSkuNotSelected,
   checkoutVersion,
-  selectedSeller
+  selectedSeller,
 }) => {
   const orderFormContext = useOrderForm()
   const valuesFromContext = useProduct()
@@ -90,7 +90,8 @@ const BuyButtonWrapper = ({
   const product = valuesFromContext && valuesFromContext.product
   const selectedItem = valuesFromContext && valuesFromContext.selectedItem
   const assemblyOptions = valuesFromContext && valuesFromContext.assemblyOptions
-  selectedSeller = selectedSeller ? selectedSeller : path(['selectedItem', 'sellers', 0], valuesFromContext)
+  selectedSeller =
+    selectedSeller || path(['selectedItem', 'sellers', 0], valuesFromContext)
   const selectedQuantity =
     valuesFromContext && valuesFromContext.selectedQuantity != null
       ? valuesFromContext.selectedQuantity
@@ -100,12 +101,12 @@ const BuyButtonWrapper = ({
     isEmptyContext || propSkuItems != null
       ? propSkuItems
       : EnhancedBuyButton.mapCatalogItemToCart({
-        product,
-        selectedItem,
-        selectedQuantity,
-        selectedSeller,
-        assemblyOptions,
-      })
+          product,
+          selectedItem,
+          selectedQuantity,
+          selectedSeller,
+          assemblyOptions,
+        })
 
   const large = isEmptyContext || propLarge != null ? propLarge : true
 
@@ -113,8 +114,8 @@ const BuyButtonWrapper = ({
     isEmptyContext || propAvailable != null
       ? propAvailable
       : selectedSeller &&
-      selectedSeller.commertialOffer &&
-      selectedSeller.commertialOffer.AvailableQuantity > 0
+        selectedSeller.commertialOffer &&
+        selectedSeller.commertialOffer.AvailableQuantity > 0
 
   const groupsValidArray =
     (assemblyOptions &&
@@ -168,14 +169,14 @@ const BuyButtonWrapper = ({
 const withAddToCart = graphql(addToCartMutation, {
   name: 'addToCart',
   props: ({ addToCart }) => ({
-    addToCart: items => addToCart({ variables: { items } }),
+    addToCart: (items) => addToCart({ variables: { items } }),
   }),
 })
 
 const withOpenMinicart = graphql(setOpenMinicartMutation, {
   name: 'setMinicartOpen',
   props: ({ setMinicartOpen }) => ({
-    setMinicartOpen: isOpen => setMinicartOpen({ variables: { isOpen } }),
+    setMinicartOpen: (isOpen) => setMinicartOpen({ variables: { isOpen } }),
   }),
 })
 

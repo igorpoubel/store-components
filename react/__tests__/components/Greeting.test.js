@@ -1,9 +1,8 @@
 import React from 'react'
-import { render, wait} from '@vtex/test-tools/react'
+import { render, wait } from '@vtex/test-tools/react'
 import { MockedProvider } from '@apollo/react-testing'
 
 import orderFormQuery from '../../components/Greeting/queries/orderForm.gql'
-
 import Greeting from '../../Greeting'
 
 const mocks = [
@@ -14,8 +13,8 @@ const mocks = [
     result: {
       data: {
         minicart: {
-          orderForm: '{ "clientProfileData": { "firstName": "Adam" } }'
-        }
+          orderForm: '{ "clientProfileData": { "firstName": "Adam" } }',
+        },
       },
     },
   },
@@ -26,12 +25,15 @@ describe('<Greeting /> component', () => {
     jest.useFakeTimers()
   })
 
-  const renderComponent = customProps => {
+  const renderComponent = (customProps) => {
     const props = {
       ...customProps,
     }
 
-    return render(<Greeting {...props} />, { graphql: { mocks }, MockedProvider })
+    return render(<Greeting {...props} />, {
+      graphql: { mocks },
+      MockedProvider,
+    })
   }
 
   it('should render name in orderForm', async () => {

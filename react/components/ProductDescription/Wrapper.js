@@ -4,7 +4,7 @@ import { path } from 'ramda'
 
 import ProductDescription from './index'
 
-const ProductDescriptionWrapper = props => {
+const ProductDescriptionWrapper = (props) => {
   const valuesFromContext = useContext(ProductContext)
   const description =
     props.description != null

@@ -22,7 +22,7 @@ const ProductHighlightsWrapper = (props) => {
 
       return names.reduce((acc, item) => {
         const highlightSpecificationGroup = specificationGroups.filter(
-          x => x.name.toLowerCase() === item.trim().toLowerCase()
+          (x) => x.name.toLowerCase() === item.trim().toLowerCase()
         )[0]
         const highlight = propOr(
           [],
@@ -33,20 +33,25 @@ const ProductHighlightsWrapper = (props) => {
       }, [])
     }
 
-    if (choose === 'admin/editor.product-details.highlights.chooseDefaultSpecification') {
+    if (
+      choose ===
+      'admin/editor.product-details.highlights.chooseDefaultSpecification'
+    ) {
       const typeSpecifications = propOr('', 'typeSpecifications', conditional)
       const specificationNames = typeSpecifications.trim().split(',')
       const allSpecifications = propOr([], 'properties', product)
 
       return specificationNames.reduce((acc, item) => {
         const highlight = allSpecifications.filter(
-          x => x.name.toLowerCase() === item.trim().toLowerCase()
+          (x) => x.name.toLowerCase() === item.trim().toLowerCase()
         )
         return acc.concat(highlight)
       }, [])
     }
 
-    if (choose === 'admin/editor.product-details.highlights.allSpecifications') {
+    if (
+      choose === 'admin/editor.product-details.highlights.allSpecifications'
+    ) {
       return propOr([], 'properties', product)
     }
   }
@@ -62,9 +67,7 @@ const ProductHighlightsWrapper = (props) => {
     }
   }
 
-  return (
-    <ProductHighlights { ...productHighlightsProps() } />
-  )
+  return <ProductHighlights {...productHighlightsProps()} />
 }
 
 ProductHighlightsWrapper.schema = {
@@ -104,7 +107,9 @@ ProductHighlightsWrapper.schema = {
             {
               properties: {
                 highlight: {
-                  enum: ['admin/editor.product-details.highlights.chooseDefault'],
+                  enum: [
+                    'admin/editor.product-details.highlights.chooseDefault',
+                  ],
                 },
                 typeHighlight: {
                   type: 'string',

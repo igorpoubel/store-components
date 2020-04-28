@@ -17,13 +17,7 @@ import ShippingSimulatorLoader from './Loader'
 import styles from './shippingSimulator.css'
 import { getNewAddress } from './utils'
 
-const ShippingSimulator = ({
-  intl,
-  skuId,
-  seller,
-  country,
-  loaderStyles,
-}) => {
+const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
   const client = useApolloClient()
   const [address, setAddress] = useState(() =>
     addValidation(getNewAddress(country))
@@ -32,7 +26,7 @@ const ShippingSimulator = ({
   const [loading, setLoading] = useState(false)
   const [isValid, setIsValid] = useState(false)
 
-  const handleAddressChange = newAddress => {
+  const handleAddressChange = (newAddress) => {
     const updatedAddress = {
       ...address,
       ...newAddress,
@@ -41,7 +35,7 @@ const ShippingSimulator = ({
     setIsValid(updatedAddress.postalCode.valid)
   }
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     e.preventDefault()
     setLoading(true)
     const { postalCode } = removeValidation(address)
@@ -60,10 +54,10 @@ const ShippingSimulator = ({
           ],
         },
       })
-      .then(result => {
+      .then((result) => {
         setShipping(result.data.shipping)
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error)
       })
       .finally(() => {

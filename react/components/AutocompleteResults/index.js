@@ -22,12 +22,12 @@ const CSS_HANDLES = [
   'resultsItemName',
 ]
 
-const getImageUrl = image => {
+const getImageUrl = (image) => {
   const imageUrl = (image.match(/https?:(.*?)"/g) || [''])[0]
   return imageUrl.replace(/https?:/, '').replace(/-25-25/g, '-50-50')
 }
 
-const getLinkProps = element => {
+const getLinkProps = (element) => {
   let page = 'store.product'
   let params = { slug: element.slug, id: element.productId }
   let query = ''
@@ -36,17 +36,17 @@ const getLinkProps = element => {
   if (element.criteria) {
     // This param is only useful to track terms searched
     // See: https://support.google.com/analytics/answer/1012264
-    const paramForSearchTracking = '&_c=' + terms[0]
+    const paramForSearchTracking = `&_c=${terms[0]}`
 
     page = 'store.search'
     params = { term: terms[0] }
-    query = `map=c,ft&rest=${terms.slice(1).join(',')}` + paramForSearchTracking
+    query = `map=c,ft&rest=${terms.slice(1).join(',')}${paramForSearchTracking}`
   }
 
   return { page, params, query }
 }
 
-/** List of search results to be displayed*/
+/** List of search results to be displayed */
 const AutocompleteResults = ({
   parentContainer,
   isOpen,
@@ -118,7 +118,7 @@ const AutocompleteResults = ({
     />
   )
 
-  const renderSearchByClick = inputValue => {
+  const renderSearchByClick = (inputValue) => {
     return customSearchPageUrl ? (
       <Link
         className={getListItemClassNames({
@@ -156,7 +156,7 @@ const AutocompleteResults = ({
             <Fragment>
               <li
                 {...getItemProps({
-                  key: 'ft' + inputValue,
+                  key: `ft${inputValue}`,
                   item: { term: inputValue },
                   index: 0,
                   onClick: handleItemClick,
@@ -165,7 +165,7 @@ const AutocompleteResults = ({
                 {attemptPageTypeSearch ? (
                   <a
                     href="#"
-                    onClick={event => event.preventDefault()}
+                    onClick={(event) => event.preventDefault()}
                     className={getListItemClassNames({
                       itemIndex: 0,
                       highlightedIndex,
@@ -223,15 +223,15 @@ const AutocompleteResults = ({
 }
 
 const itemProps = PropTypes.shape({
-  /** Image of the product*/
+  /** Image of the product */
   thumb: PropTypes.string,
-  /** Name of the product*/
+  /** Name of the product */
   name: PropTypes.string,
-  /** Link to the product*/
+  /** Link to the product */
   href: PropTypes.string,
-  /** Slug of the product*/
+  /** Slug of the product */
   slug: PropTypes.string,
-  /** Criteria of the product*/
+  /** Criteria of the product */
   criteria: PropTypes.string,
 })
 
@@ -243,9 +243,9 @@ AutocompleteResults.propTypes = {
     }),
     loading: PropTypes.bool.isRequired,
   }),
-  /** Downshift specific prop*/
+  /** Downshift specific prop */
   highlightedIndex: PropTypes.number,
-  /** Search query*/
+  /** Search query */
   inputValue: PropTypes.string.isRequired,
   /** Closes the options box. */
   closeMenu: PropTypes.func,
@@ -262,7 +262,7 @@ AutocompleteResults.propTypes = {
 
 const AutocompleteResultsWithData = graphql(autocomplete, {
   skip: ({ inputValue }) => !inputValue,
-  options: props => ({
+  options: (props) => ({
     variables: {
       inputValue: props.inputValue,
     },
